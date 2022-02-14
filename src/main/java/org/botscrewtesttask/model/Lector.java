@@ -15,6 +15,8 @@ public class Lector {
     private String name;
     @Column(name = "last_name")
     private String surname;
+    @Column(name = "salary")
+    private Double salary;
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "degree")
     private Degree degree;

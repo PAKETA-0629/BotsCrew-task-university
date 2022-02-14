@@ -2,10 +2,7 @@ package org.botscrewtesttask.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,4 +13,7 @@ public class Department {
     private Long id;
     @Column(name = "name")
     private String name;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", name = "head_of_department")
+    private Lector headOfDepartment;
 }
