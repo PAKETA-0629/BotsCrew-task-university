@@ -1,13 +1,12 @@
 package org.botscrewtesttask.service.impl;
 
-import org.botscrewtesttask.model.Degree;
 import org.botscrewtesttask.model.Department;
 import org.botscrewtesttask.model.Lector;
 import org.botscrewtesttask.repository.DepartmentRepository;
 import org.botscrewtesttask.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,13 +29,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Map<Degree, Long> getStatistics(String name) {
+    public List<Object> getStatistics(String name) {
         return departmentRepository.degreeStatistics(name);
     }
 
     @Override
-    public Long getAverageSalary(String name) {
-        Optional<Long> salary = departmentRepository.averageSalary(name);
+    public Double getAverageSalary(String name) {
+        Optional<Double> salary = departmentRepository.averageSalary(name);
         if (salary.isEmpty()) {
             //todo log and/or exception
             //throw new Exception;
@@ -45,7 +44,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Map<Department, Long> countEmployee(String name) {
-        return departmentRepository.countOfEmployee(name);
+    public Long countEmployee(String name) {
+        Optional<Long> count = departmentRepository.countOfEmployee(name);
+        if (count.isEmpty()) {
+            //todo log and/or exception
+            //throw new Exception;
+        }
+        return count.get();
     }
 }
