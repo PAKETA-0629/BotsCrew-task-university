@@ -17,7 +17,6 @@ public class LectorServiceImpl implements LectorService {
 
     @Override
     public List<Lector> searchByTemplate(String template) {
-        //todo implement
-        return null;
+        return lectorRepository.searchByTemplate("[a-zA-Z]*" + template + "[a-zA-Z]*");
     }
 }
