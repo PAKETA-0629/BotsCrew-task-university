@@ -15,7 +15,7 @@ CREATE TABLE lector (
 CREATE TABLE department (
 
                             id SERIAL PRIMARY KEY,
-                            name VARCHAR(100),
+                            name VARCHAR(100) UNIQUE,
                             head_of_department INT REFERENCES lector(id)
 );
 
